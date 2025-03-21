@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Payment Methods</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome for Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    
+
+  <!-- Custom Styles -->
+  <style>
+    .btn-custom {
+      background-color: #161982;
+      color: white;
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #fec161;
+      color: #161982;
+    }
+
+    .mt-3 {
+      margin-top: 20px;
+    }
+
+    .section-bg {
+      background-color: #f4f4f9;
+      padding: 60px 0;
+    }
+
+    .box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-flutterwave {
+      background-color: #161982;
+      color: white;
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn-flutterwave:hover {
+      background-color: #fec161;
+      color: #161982;
+    }
+    
+    .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .payment-methods img {
+            height: 40px;
+            width: auto;
+        }
+        .payment-methods .line {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+    
+  
+       
+    </style>
+ 
+</head>
+
+
+
+<body>
+    
+    
+  <header id="header">
+    
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <div class="logo-container">
+            <a href="#intro">
+                <img src="https://i.ibb.co/JWYYJydp/20250312-045235.png" alt="Logo" border="0">
+            </a>
+        </div>
+    </div>
+    </header>
+    
+         <div style="height: 80px;"></div>
+         
+        <section class="form-container">
+  <div class="form--container">
+   
+    
+      <div class="col-lg-6">
+    </h3>We make everything easy for you, even payments. We accept payments in multiple currencies through Paystack, Flutterwave, Payoneer, Grey, Direct Transfers with little to no charge.</h3>
+   
+   
+   
+        <h4><strong>After payments click the button below to be redirected to your assigned WRITER</strong></h4></div>
+        
+        <div class="text-center mt-4">
+        <a href="https://wa.me/2348167831769" class="btn btn-custom">Paid? Click here!</a>
+      </div>
+      
+        </div>
+        </div>
+        </section>
+        
+        <div style="height: 50px;"></div>
+        
+ 
+ <div class="payment-methods">
+        <div class="line">
+           <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" alt="MasterCard">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="American Express">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/discover.svg" alt="Discover">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/applepay.svg" alt="Apple Pay">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/googlepay.svg" alt="Google Pay">
+        </div>
+     
+    </div>
+    </div>
+    
+ 
+    </div>
+    
+    
+    
+    
+    
+  <!--==========================
+    Payment Method Section
+  ============================-->
+  <section id="payment" class="section-bg wow fadeInUp">
+    <div class="container">
+      <header class="section-header">
+        <h3>Payment Methods</h3>
+        <p>Choose your preferred payment method and currency.</p>
+      </header>
+
+      <div class="row">
+        <!-- Currency Converter -->
+        <div class="col-md-6 offset-md-3">
+          <div class="form-group">
+            <label for="currency">Select Currency:</label>
+            <select id="currency" class="form-control" onchange="convertCurrency()">
+              <option value="USD">US Dollar (USD)</option>
+              <option value="GBP">British Pound (GBP)</option>
+              <option value="EUR">Euro (EUR)</option>
+              <option value="NGN">Nigerian Naira (NGN)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount in USD:</label>
+            <input type="number" id="amount" class="form-control" readonly>
+          </div>
+          <div class="form-group">
+            <label for="convertedAmount">Converted Amount:</label>
+            <input type="text" id="convertedAmount" class="form-control" readonly>
+          </div>
+
+          <!-- Pay with Paystack Button -->
+          <button class="btn btn-custom mt-3" onclick="payWithPaystack()">Pay with Paystack</button>
+          
+          <p>*Payments outside Nigeria with Paystack should be paid in NGN. Kindly use the converter to convert before clicking the button, otherwise use the options*</p>
+           
+
+
+          <!-- Pay with Flutterwave Button -->
+           <div class="box"><h3><strong>Pay With Flutterwave</strong></h3>
+         <p>Click the button below to process your payment with Flutterwave</p>
+          <button class="btn btn-flutterwave mt-3" onclick="payWithFlutterwave()">Pay with Flutterwave</button>
+        </div>
+      </div>
+      </div>
+      
+       <div style="height: 50px;"></div>
+
+      <!-- Payment Details -->
+      <div class="row mt-4">
+         
+         <div class="col-md-3"><div class="box"><h3><strong>Pay With Payooneer</strong></h3><p>*Payments with Wire, Bacs and Chaps are not accepted, unless you are willing to pay a charge of $40, as this is charged by banking institution, not the agency*</p></div></div>
+         
+          
+          
+        <div class="col-md-3">
+          <div class="box">
+              
+              <h4>US Dollar (USD)</h4>
+            <p>Account Number: 4020278032359</p>
+            <p>Account Name: Oluebube Angel Nduluo</p>
+            <p>Bank Name: First Century Bank</p>
+            
+            <p>Routing(ABA): 061120084</p>
+            <p>Account Type: Checking</p>
+            <p>Bank address: 1731 N Elm St  Commerce, GA 30529 USA</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="box">
+            <h4>British Pound (GBP)</h4>
+            <p>Account Name: oluebube angel nduluo</p>
+            <p>Account Number: 12947956</p>
+            
+            <p>Sort Code: 231486</p>
+         
+            <p>Bank Name: Barclays </p>
+            
+          </div>
+        </div>
+        </div>
+        
+        
+            
+      <div style="height: 50px;"></div>
+       
+
+
+<div class="row mt-4">
+         
+         <div class="col-md-3"><div class="box"><h3><strong>Pay With Grey</strong></h3><p>*Payments with Wire, Bacs and Chaps are not accepted, unless you are willing to pay a charge of $40, as this is charged by banking institution, not the agency*</p></div></div>
+         
+         
+          <div class="col-md-3"><div class="box"><h4>Grey Tag</h4> <p>hephzscholars</p></div></div>
+          
+          
+        <div class="col-md-3">
+          <div class="box">
+              <h4>USDC and US Dollar (USD)</h4>
+            <p>Account Number: 214080591132</p>
+            <p>Account Name: oluebube angel nduluo</p>
+            <p>Bank Name: Lead Bank</p>
+          
+            <p>ACH Routing: 101019644</p>
+            <p>Account Type: Checking</p>
+            <p>Bank address: 1801 Main St., Kansas City, MO 64108</p>
+          </div>
+        </div>
+        
+            
+        <div class="col-md-3">
+          <div class="box">
+            <h4>British Pound (GBP) and Euro (EUR)</h4>
+            <p>Account Name: oluebube angel nduluo</p>
+            <p>Account Number: 67870064</p>
+            <p>IBAN: GB52CLJU04130767870064</p>
+            <p>Sort Code: 041307</p>
+            <p>Swift Code: CLJUGB21XXX</p>
+            <p>Bank Name: Clear Junction Limited</p>
+            <p>Bank address: 4th Floor Imperial House, 15 Kingsway, London, United Kingdom, WC2B 6UN</p>
+          </div>
+        </div>
+      </div>
+      
+      <div style="height: 50px;"></div>
+      
+      
+    <div class="row mt-4">   
+       
+       <div class="col-md-3"><div class="box"><h3><strong>Pay Via Direct Transfer</strong></h3></div></div>
+         
+      
+       <div class="col-md-3">
+          <div class="box">
+              
+         
+            
+            <p>Account Name: Oluebube Angel Nduluo</p>
+           <p>Account Number: 0088082102</p>
+            <p>Bank Name: Sterling Bank</p>
+           
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="box">
+          
+            
+            <p>Account Name: Oluebube Angel Nduluo</p>
+           <p>Account Number: 3143967740</p>
+            <p>Bank Name: First Bank PLC</p>
+           
+            
+          </div>
+        </div>
+        </div>
+      
+      <!-- Contact Button (WhatsApp/Email/Form) -->
+      <div class="text-center mt-4">
+        <a href="https://wa.me/2348167831769" class="btn btn-custom">Paid? Click here!</a>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Paystack Payment Integration -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  <!-- Flutterwave Payment Integration -->
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
+
+  <!-- Currency Conversion and Payment Script -->
+  <script>
+    const exchangeRates = {
+      USD: 1,
+      GBP: 0.76,
+      EUR: 0.93,
+      NGN: 1560
+    };
+
+    // Get the amount from the URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const amountUSD = urlParams.get('amount');
+    document.getElementById('amount').value = amountUSD;
+
+    function convertCurrency() {
+      const currency = document.getElementById("currency").value;
+      const convertedAmount = amountUSD * exchangeRates[currency];
+      document.getElementById("convertedAmount").value = convertedAmount.toFixed(2) + " " + currency;
+    }
+
+    // Initialize conversion on page load
+    window.onload = convertCurrency;
+
+    // Paystack Payment Function
+    function payWithPaystack() {
+      let amount = document.getElementById("convertedAmount").value.split(" ")[0]; // Extract numeric value
+      let currency = document.getElementById("currency").value;
+
+      let handler = PaystackPop.setup({
+        key: 'Pk_live_3150a3b2eb05dbfdfc944e59dc6c9bce5a93f069', // Replace with your Paystack public key
+        email: 'customer@example.com', // Replace with customer email
+        amount: amount * 100, // Convert to kobo
+        currency: currency,
+        ref: 'TXN_' + Math.floor((Math.random() * 1000000000) + 1),
+        callback: function(response) {
+          alert('Payment successful! Transaction Ref: ' + response.reference);
+        },
+        onClose: function() {
+          alert('Payment window closed.');
+        }
+      });
+      handler.openIframe();
+    }
+
+    // Flutterwave Payment Function
+    function payWithFlutterwave() {
+      let amount = document.getElementById("convertedAmount").value.split(" ")[0]; // Extract numeric value
+      let currency = document.getElementById("currency").value;
+
+      FlutterwaveCheckout({
+        public_key: 'FLWPUBK-a6d9255f00c8ae4c3d5f4648facb2fa1-X', // Replace with your Flutterwave public key
+        tx_ref: 'TXN_' + Math.floor((Math.random() * 1000000000) + 1),
+        amount: amount,
+        currency: currency,
+        payment_options: 'card, banktransfer, ussd',
+        customer: {
+          email: 'customer@example.com', // Replace with customer email
+        },
+        callback: function(response) {
+          alert('Payment successful! Transaction ID: ' + response.transaction_id);
+        },
+        onclose: function() {
+          alert('Payment window closed.');
+        }
+      });
+    }
+  </script>
+  
+  
+  <script src="
+https://cdn.jsdelivr.net/npm/simple-icons@14.10.0/index.min.js
+"></script>
+
+</body>
+</html>
