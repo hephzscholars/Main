@@ -892,6 +892,14 @@
             <!-- Proceed to Payment -->
             <button class="btn btn-custom mt-3" onclick="submitForm('first')">Proceed to Payment</button>
           </div>
+
+		<!-- Add the 60% payment option -->
+    <div class="form-group mt-3">
+        <input type="checkbox" id="partialPayment" onchange="togglePartialPayment()">
+        <label for="partialPayment">Pay 60% Now (Balance Later)</label>
+    </div>
+    <button class="btn btn-custom mt-2" id="partialPaymentBtn" style="display: none;" onclick="submitPartialPayment('first')">Pay 60% Now</button>
+</div>
         </div>
       </div>
     </div>
@@ -1158,7 +1166,96 @@
 </script>
 
 
+<script>
+  // Add these new functions to handle the 60% payment option
+  function togglePartialPayment() {
+    const checkbox = document.getElementById('partialPayment');
+    const partialBtn = document.getElementById('partialPaymentBtn');
+    partialBtn.style.display = checkbox.checked ? 'block' : 'none';
+  }
 
+  function submitPartialPayment(formType) {
+    // First calculate the full price
+    updatePrice(formType);
+    const totalPriceElement = document.getElementById('totalPrice');
+    const fullPrice = parseFloat(totalPriceElement.innerText);
+    
+    // Calculate 60% of the price
+    const partialPrice = (fullPrice * 0.6).toFixed(2);
+    
+    // Store the full price in localStorage so we can reference it later
+    localStorage.setItem('fullPrice', fullPrice);
+    localStorage.setItem('partialPayment', 'true');
+    
+    // Update the displayed price temporarily (just for visual feedback)
+    totalPriceElement.innerText = partialPrice;
+    
+    // Submit the form with the partial payment flag
+    submitForm(formType);
+    
+    // Restore the full price display immediately after submission
+    totalPriceElement.innerText = fullPrice.toFixed(2);
+  }
+
+  // Modify the existing submitForm function to include the partial payment information
+  function submitForm(formType) {
+    const prefix = formType === 'first' ? '' : '2';
+
+    // Validate required fields
+    const name = document.getElementById(`name${prefix}`).value.trim();
+    const email = document.getElementById(`email${prefix}`).value.trim();
+    const subject = document.getElementById(`subject${prefix}`).value.trim();
+    const topic = document.getElementById(`topic${prefix}`).value.trim();
+
+    if (!name || !email || !subject || !topic) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    // Get analysis checkbox states (only for the first form)
+    let qualitativeAnalysis = "No";
+    let quantitativeAnalysis = "No";
+    let advancedDataAnalysis = "No";
+    let partialPayment = "No";
+
+    if (formType === 'first') {
+      qualitativeAnalysis = document.getElementById('qualitativeAnalysis').checked ? "Yes" : "No";
+      quantitativeAnalysis = document.getElementById('quantitativeAnalysis').checked ? "Yes" : "No";
+      advancedDataAnalysis = document.getElementById('advancedDataAnalysis').checked ? "Yes" : "No";
+      partialPayment = document.getElementById('partialPayment').checked ? "Yes" : "No";
+    }
+
+    // Get the amount to charge (full or partial)
+    let amountToCharge = document.getElementById(`totalPrice${prefix}`).innerText;
+    if (formType === 'first' && partialPayment === "Yes") {
+      amountToCharge = (parseFloat(amountToCharge) * 0.6).toFixed(2);
+    }
+
+    // Prepare form data
+    const formData = {
+      formTitle: formType === 'first' ? "Writing Services" : "DIY",
+      name: name,
+      email: email,
+      subject: subject,
+      topic: topic,
+      educationLevel: document.getElementById(`educationLevel${prefix}`).options[document.getElementById(`educationLevel${prefix}`).selectedIndex].text,
+      service: document.getElementById(`service${prefix}`).options[document.getElementById(`service${prefix}`).selectedIndex].text,
+      quantity: document.getElementById(formType === 'first' ? 'pages' : 'months2').value,
+      deadline: document.getElementById(`deadline${prefix}`).options[document.getElementById(`deadline${prefix}`).selectedIndex].text,
+      newCustomer: document.getElementById(`newCustomer${prefix}`).checked ? "Yes" : "No",
+      qualitativeAnalysis: qualitativeAnalysis,
+      quantitativeAnalysis: quantitativeAnalysis,
+      advancedDataAnalysis: advancedDataAnalysis,
+      partialPayment: partialPayment,
+      totalPrice: document.getElementById(`totalPrice${prefix}`).innerText,
+      amountCharged: amountToCharge
+    };  
+    
+    console.log("Form Data:", formData); // Debugging: Log form data
+    
+    // Redirect to payment page with the correct amount
+    window.location.href = `payment.html?amount=${amountToCharge}`;
+    
 
 
 
