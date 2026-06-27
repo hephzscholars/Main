@@ -759,11 +759,11 @@
        <div class="form-group">
          <label for="educationLevel">Select Education Level:</label>
          <select id="educationLevel" class="form-control" onchange="updatePrice('first')">
-           <option value="1.5">High School ($0.5 per page)</option>
-           <option value="1.5">College ($0.5 per month)</option>
-           <option value="2">Bachelor ($1.0 per page)</option>
-           <option value="2.5">Masters ($1.5 per page)</option>
-           <option value="2.5">PhD ($2.0 per page)</option>
+           <option value="0.5">High School ($0.5 per page)</option>
+           <option value="0.5">College ($0.5 per month)</option>
+           <option value="1">Bachelor ($1.0 per page)</option>
+           <option value="1.5">Masters ($1.5 per page)</option>
+           <option value="2">PhD ($2.0 per page)</option>
          </select>
        </div>
 
@@ -772,18 +772,18 @@
          <label for="service">Select Service:</label>
          <select id="service" class="form-control" onchange="updatePrice('first')">
            <option value="0">Select a Service</option>
-           <option value="2">Dissertation (+$1.5)</option>
-           <option value="2">Thesis (+$1.5)</option>
+           <option value="1">Dissertation (+$1)</option>
+           <option value="1.5">Thesis (+$1.5)</option>
            <option value="1">Essay (+$1)</option>
-           <option value="2">Literature Review (+$1.5)</option>
-           <option value="2">Proposals (+$1.5)</option>
-           <option value="2">Research Paper (+$1.5)</option>
-           <option value="2">Referencing (+$1.5)</option>
-           <option value="0.5">Editing & Proofreading (+$0.1.5)</option>
-           <option value="1">Term Paper (+$0.5)</option>
-           <option value="2">Questionnaire (+$0.5)</option>
-           <option value="1">PowerPoint Slides(+$0.5)</option>
-     <option value="9">CV (+$9)</option>
+           <option value="1.5">Literature Review (+$1.5)</option>
+           <option value="1.5">Proposals (+$1.5)</option>
+           <option value="1.5">Research Paper (+$1.5)</option>
+           <option value="1.5">Referencing (+$1.5)</option>
+           <option value="1.5">Editing & Proofreading (+$1.5)</option>
+           <option value="0.5">Term Paper (+$0.5)</option>
+           <option value="0.5">Questionnaire (+$0.5)</option>
+           <option value="0.5">PowerPoint Slides(+$0.5)</option>
+     <option value="9.99">CV (+$9.99)</option>
          </select>
        </div>
 
@@ -797,8 +797,8 @@
        <div class="form-group">
          <label for="deadline">Select Deadline:</label>
          <select id="deadline" class="form-control" onchange="updatePrice('first')">
-           <option value="1">Standard More than 30 days (No Extra Cost)</option>
-           <option value="1.2">Urgent less than 30 days (+10%)</option>
+           <option value="1">Standard More (No Rush - No Extra Cost)</option>
+           <option value="1.2">Urgent for thesis and dissertation less than 30 days (+20%)</option>
          </select>
        </div>
 
@@ -891,13 +891,13 @@ function updatePrice(formType) {
    const advancedDataAnalysis = document.getElementById('advancedDataAnalysis');
 
    if (qualitativeAnalysis.checked) {
-     totalPrice += 99.9; // Add $99.9 for qualitative analysis
+     totalPrice += 89.9; // Add $99.9 for qualitative analysis
    }
    if (quantitativeAnalysis.checked) {
-     totalPrice += 99.9; // Add $99.9 for quantitative analysis
+     totalPrice += 89.9; // Add $99.9 for quantitative analysis
    }
    if (advancedDataAnalysis.checked) {
-     totalPrice += 149.9; // Add 149.9$ for advanced data analysis
+     totalPrice += 129.9; // Add 149.9$ for advanced data analysis
    }
  }
 
